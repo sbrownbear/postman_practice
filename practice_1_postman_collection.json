@@ -46,7 +46,7 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "name\n",
+							"key": "name",
 							"value": "Sergey",
 							"type": "text"
 						},
