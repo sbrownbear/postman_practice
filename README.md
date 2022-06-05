@@ -1,5 +1,3 @@
-# practice_1_postman_collection.json
-
 ## Создать запросы в Postman.
 
 Protocol: `http`
