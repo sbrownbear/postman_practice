@@ -9,13 +9,13 @@ http://162.55.220.72:5005/first
     This is the first responce from server!
 
 2. Статус код 200
-```
+```bash
 pm.test("Status code is 200", function () {
   pm.response.to.have.status(200);
 });
 ```
 3. Проверить, что в body приходит правильный string.
-```
+```bash
 pm.test("BodyString", function () {
     pm.response.to.have.body("This is the first responce from server!");
 });
@@ -23,7 +23,7 @@ pm.test("BodyString", function () {
 ## __Endpoint_2__
 http://162.55.220.72:5005/user_info_3
 1. Отправить запрос.
-```
+```bash
 {
     "age": "26",
     "family": {
@@ -43,16 +43,16 @@ http://162.55.220.72:5005/user_info_3
     "salary": 1000
 ```
 2. Статус код 200
-```
+```bash
 pm.test("Status code is 200", function () {
     pm.response.to.have.status(200);
 ```
 3. Спарсить response body в json.
-```
+```bash
 const JsonData = pm.response.json();
 ```
 4. Проверить, что name в ответе равно name s request.
-```
+```bash
 let respName0 = JsonData.name;
 
 pm.test("RespName=ReqName", function () {
@@ -60,7 +60,7 @@ pm.test("RespName=ReqName", function () {
 });
 ```
 5. Проверить, что age в ответе равно age s request.
-```
+```bash
 let respAge0 = JsonData.age;
 ```
 pm.test("RespAge=ReqAge", function () {
@@ -68,17 +68,17 @@ pm.test("RespAge=ReqAge", function () {
 });
 
 6. Проверить, что salary в ответе равно salary s request.
-```
+```bash
 pm.test("RespSalary = ReqSalary", function () {
     pm.expect(respSalary0).to.eql(1000);
 });
 ```
 7. Спарсить request.
-```
+```bash
 const reqBody = pm.request.body.formdata.toObject()
 ```
 8. Проверить, что name в ответе равно name s request.
-```
+```bash
 let respName1 = JsonData.name;
 let reqName1 = reqBody.name;
 
@@ -87,7 +87,7 @@ pm.test("RespName=ReqName", function () {
 });
 ```
 9. Проверить, что age в ответе равно age s request.
-```
+```bash
 let respAge1 = JsonData.age;
 let reqAge1 = reqBody.age;
 
@@ -96,7 +96,7 @@ pm.test("RespAge = ReqAge", function () {
 });
 ```
 10. Проверить, что salary в ответе равно salary s request.
-```
+```bash
 let respSalary1 = JsonData.salary;
 let reqSalary1 = reqBody.salary;
 
@@ -105,12 +105,12 @@ pm.test("RespAge = ReqAge", function () {
 });
 ```
 11. Вывести в консоль параметр family из response.
-```
+```bash
 let consoleFamily = JsonData.family;
 console.log (consoleFamily)
 ```
 12. Проверить что u_salary_1_5_year в ответе равно salary*4.
-```
+```bash
 let respSalary4 = JsonData.family.u_salary_1_5_year;
 let reqSalary4 = reqBody.salary*4;
 
@@ -123,7 +123,7 @@ pm.test("Salary_1.5 year", function () {
 http://162.55.220.72:5005/object_info_3
 
 1. Отправить запрос.
-```
+```bash
 {
     "age": "26",
     "family": {
@@ -154,21 +154,21 @@ http://162.55.220.72:5005/object_info_3
 }
 ```
 2. Статус код 200
-```
+```bash
 pm.test("Status code is 200", function () {
   pm.response.to.have.status(200);
 });
 ```
 3. Спарсить response body в json.
-```
+```bash
 const JsonData = pm.response.json();
 ```
 4. Спарсить request.
-```
+```bash
 const reqParams = pm.request.url.query.toObject();
 ```
 5. Проверить, что name в ответе равно name s request.
-```
+```bash
 let respName2 = JsonData.name;
 let reqName2 = reqParams.name;
 
@@ -177,7 +177,7 @@ pm.test("NameResp=NameReq", function () {
 });
 ```
 6. Проверить, что age в ответе равно age s request.
-```
+```bash
 let respAge2 = JsonData.age;
 let reqAge2 = reqParams.age;
 
@@ -186,7 +186,7 @@ pm.test("AgeResp=AgeReq", function () {
 });
 ```
 7. Проверить, что salary в ответе равно salary s request.
-```
+```bash
 let respSalary2 = JsonData.salary;
 let reqSalary2 = reqParams.salary;
 
@@ -195,33 +195,33 @@ pm.test("SalaryResp=SalaryReq", function () {
 });
 ```
 8. Вывести в консоль параметр family из response.
-```
+```bash
 let familyConsole1 = JsonData.family;
 console.log (familyConsole1)
 ```
 9. Проверить, что у параметра dog есть параметры name.
-```
+```bash
 let dogName = JsonData.family.pets.dog;
 pm.test("Param dog have param name", function () {
     pm.expect(dogName).to.have.property("name");
 });
 ```
 10. Проверить, что у параметра dog есть параметры age.
-```
+```bash
 let dogAge = JsonData.family.pets.dog;
 pm.test("Param dog have param age", function () {
     pm.expect(dogAge).to.have.property("age");
 });
 ```
 11. Проверить, что параметр name имеет значение Luky.
-```
+```bash
 let dogValue_name = JsonData.family.pets.dog.name;
 pm.test("Param name have value Luky", function () {
     pm.expect(dogValue).to.deep.equal("Luky")
 });
 ```
 12. Проверить, что параметр age имеет значение 4.
-```
+```bash
 let dogValue_age = JsonData.family.pets.dog.age;
 pm.test("Param age have value 4", function () {
     pm.expect(dogValue_age).to.deep.equal(4)
@@ -231,8 +231,9 @@ pm.test("Param age have value 4", function () {
 ## __Endpoint_4__
 
 http://162.55.220.72:5005/object_info_4
-```
+
 1. Отправить запрос.
+```bash
 {
     "age": 26,
     "name": "Sergey",
@@ -244,21 +245,21 @@ http://162.55.220.72:5005/object_info_4
 }
 ```
 2. Статус код 200
-```
+```bash
 pm.test("Status code is 200", function () {
     pm.response.to.have.status(200);
 });
 ```
 3. Спарсить response body в json.
-```
+```bash
 const JsonData = pm.response.json();
 ```
 4. Спарсить request.
-```
+```bash
 const reqParams = pm.request.url.query.toObject();
 ```
 5. Проверить, что name в ответе равно name s request.
-```
+```bash
 let respName3 = JsonData.name;
 let reqName3 = reqParams.name;
 
@@ -267,7 +268,7 @@ pm.test("NameResp=NameReq", function () {
 });
 ```
 6. Проверить, что age в ответе равно age из request.
-```
+```bash
 let respAge3 = JsonData.age;
 let reqAge3 = reqParams.age;
 
@@ -276,32 +277,32 @@ pm.test("NameResp=NameReq", function () {
 });
 ```
 7. Вывести в консоль параметр salary из request.
-```
+```bash
 let salaryReq = reqParams.salary;
 console.log (salaryReq)
 ```
 8. Вывести в консоль параметр salary из response.
-```
+```bash
 let salaryResp = JsonData.salary;
 console.log (salaryResp)
 ```
 9. Вывести в консоль 0-й элемент параметра salary из response.
-```
+```bash
 let salaryReq0 = JsonData.salary[0];
 console.log (salaryReq0)
 ```
 10. Вывести в консоль 1-й элемент параметра salary параметр salary из response.
-```
+```bash
 let salaryReq1 = JsonData.salary[1];
 console.log (salaryReq1)
 ```
 11. Вывести в консоль 2-й элемент параметра salary параметр salary из response.
-```
+```bash
 let salaryReq2 = JsonData.salary[2];
 console.log (salaryReq2)
 ```
 12. Проверить, что 0-й элемент параметра salary равен salary из request.
-```
+```bash
 let countSalaryResp = JsonData.salary[0];
 let countSalaryReq = reqParams.salary;
 
@@ -310,7 +311,7 @@ pm.test("CountSalaryResp=CountSalaryReq", function () {
 });
 ```
 13. Проверить, что 1-й элемент параметра salary равен salary*2 из request.
-```
+```bash
 let countSalaryResp1 = JsonData.salary[1];
 let countSalaryReq1 = reqParams.salary*2;
 
@@ -319,7 +320,7 @@ pm.test("CountSalaryResp1=CountSalaryReq1", function () {
 });
 ```
 14. Проверить, что 2-й элемент параметра salary равен salary*3 из request.
-```
+```bash
 let countSalaryResp2 = JsonData.salary[2];
 let countSalaryReq2 = reqParams.salary*3;
 
@@ -328,31 +329,31 @@ pm.test("CountSalaryResp2=CountSalaryReq2", function () {
 });
 ```
 15. Создать в окружении переменную name
-```
+```bash
 let User_name = JsonData.name;
 ```
 16. Создать в окружении переменную age
-```
+```bash
 let User_age = JsonData.age;
 ```
 17. Создать в окружении переменную salary
-```
+```bash
 let User_salary = JsonData.salary;
 ```
 18. Передать в окружение переменную name
-```
+```bash
 pm.environment.set("name", User_name);
 ```
 19. Передать в окружение переменную age
-```
+```bash
 pm.environment.set("age", User_age);
 ```
 20. Передать в окружение переменную salary
-```
+```bash
 pm.environment.set("salary", User_salary);
 ```
 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
-```
+```bash
 let salary = JsonData.salary;
 let element = 0
 while (element<salary.length) {
@@ -363,6 +364,7 @@ while (element<salary.length) {
 ## __Endpoint_5__
 
 http://162.55.220.72:5005/user_info_2
+
 1. Вставить параметр salary из окружения в request
 
 2. Вставить параметр age из окружения в age
@@ -370,7 +372,7 @@ http://162.55.220.72:5005/user_info_2
 3. Вставить параметр name из окружения в name
 
 4. Отправить запрос.
-```
+```bash
 {
     "person": {
         "u_age": 26,
@@ -389,57 +391,57 @@ http://162.55.220.72:5005/user_info_2
 }
 ```
 5. Статус код 200
-```
+```bash
 pm.test("Status code is 200", function () {
   pm.response.to.have.status(200);
 });
 ```
 6. Спарсить response body в json.
-```
+```bash
 const JsonData = pm.response.json();
 ```
 7. Спарсить request.
-```
+```bash
 const reqBody = pm.request.body.formdata.toObject();
 ```
 8. Проверить, что json response имеет параметр start_qa_salary
-```
+```bash
 pm.test("CheckStart_salary", function () {
     pm.expect(JsonData).to.have.property("start_qa_salary");
 });
 ```
 9. Проверить, что json response имеет параметр qa_salary_after_6_months
-```
+```bash
 pm.test("CheckSalary_6", function () {
     pm.expect(JsonData).to.have.property("qa_salary_after_6_months");
 });
 ```
 10. Проверить, что json response имеет параметр qa_salary_after_12_months
-```
+```bash
 pm.test("CheckSalary_12", function () {
     pm.expect(JsonData).to.have.property("qa_salary_after_12_months");
 });
 ```
 11. Проверить, что json response имеет параметр qa_salary_after_1.5_year
-```
+```bash
 pm.test("CheckSalary_1.5", function () {
     pm.expect(JsonData).to.have.property("qa_salary_after_1.5_year");
 });
 ```
 12. Проверить, что json response имеет параметр qa_salary_after_3.5_years
-```
+```bash
 pm.test("CheckSalary_3.5", function () {
     pm.expect(JsonData).to.have.property("qa_salary_after_3.5_years");
 });
 ```
 13. Проверить, что json response имеет параметр person
-```
+```bash
 pm.test("person availability", function () {
     pm.expect(JsonData).to.have.property("person");
 });
 ```
 14. Проверить, что параметр start_qa_salary равен salary из request.
-```
+```bash
 let startResp = JsonData.start_qa_salary;
 let startReq = reqBody.salary;
 pm.test("Start_salary", function () {
@@ -447,7 +449,7 @@ pm.test("Start_salary", function () {
 });
 ```
 15. Проверить, что параметр qa_salary_after_6_months равен salary*2 из request.
-```
+```bash
 let salary6Resp = JsonData.qa_salary_after_6_months;
 let salary6Req = reqBody.salary*2;
 pm.test("Salary_6", function () {
@@ -455,7 +457,7 @@ pm.test("Salary_6", function () {
 });
 ```
 16. Проверить, что параметр qa_salary_after_12_months равен salary*2.7 из request.
-```
+```bash
 let salary12Resp = JsonData.qa_salary_after_12_months;
 let salary12Req = reqBody.salary*2.7;
 pm.test("Salary_12", function () {
@@ -463,7 +465,7 @@ pm.test("Salary_12", function () {
 });
 ```
 17. Проверить, что параметр qa_salary_after_1.5_year равен salary*3.3 из request.
-```
+```bash
 let salary18Resp = JsonData["qa_salary_after_1.5_year"];
 let salary18Req = reqBody.salary*3.3;
 pm.test("Salary_18", function () {
@@ -471,7 +473,7 @@ pm.test("Salary_18", function () {
 });
 ```
 18. Проверить, что параметр qa_salary_after_3.5_years равен salary*3.8 из request.
-```
+```bash
 let salary42Resp = JsonData["qa_salary_after_3.5_year"];
 let salary42Req = reqBody.salary*3.8;
 pm.test("Salary_42", function () {
@@ -479,7 +481,7 @@ pm.test("Salary_42", function () {
 });
 ```
 19. Проверить, что в параметре person, 1-й элемент из u_name равен salary из request.
-```
+```bash
 let u_nameResp = JsonData.person.u_name[1];
 let salaryReq = reqBody.salary;
 pm.test("Salary_u_name", function () {
@@ -487,7 +489,7 @@ pm.test("Salary_u_name", function () {
 });
 ```
 20. Проверить, что что параметр u_age равен age из request
-```
+```bash
 let u_ageResp = JsonData.person.u_age;
 let ageReq = reqBody.age;
 pm.test("Age_u_age", function () {
@@ -495,7 +497,7 @@ pm.test("Age_u_age", function () {
 });
 ```
 21. Проверить, что параметр u_salary_5_years равен salary*4.2 из request.
-```
+```bash
 let u_salResp = JsonData.person.u_salary_5_years;
 let salReq = reqBody.salary*4.2;
 pm.test("u_salary5", function () {
@@ -503,7 +505,7 @@ pm.test("u_salary5", function () {
 });
 ```
 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
-```
+```bash
 let person = JsonData.person
 
 for (let prop in person) {
